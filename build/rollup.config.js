@@ -20,7 +20,7 @@ const argv = minimist(process.argv.slice(2));
 const projectRoot = path.resolve(__dirname, '..');
 
 const baseConfig = {
-  input: 'src/entry.js',
+  input: 'src/index.js',
   plugins: {
     preVue: [
       alias({
@@ -53,6 +53,7 @@ const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
   'vue',
+  'tv-icon'
 ];
 
 // UMD/IIFE shared settings: output.globals
