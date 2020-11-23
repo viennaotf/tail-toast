@@ -462,11 +462,10 @@ const __vue_component__ = /*#__PURE__*/normalizeComponent({
 let installed = false;
 const containerClasses = ['z-40', 'fixed', 'inset-0', 'flex', 'flex-col-reverse', 'items-end', 'justify-center', 'px-4', 'py-6', 'pointer-events-none', 'sm:p-6', 'sm:items-end', 'sm:justify-end'];
 var index = {
-  install(Vue, defaultOptions = {}) {
+  install(Vue) {
     if (installed) return;
     const CONSTRUCTOR = Vue.extend(__vue_component__);
     const CACHE = {};
-    Object.assign(__vue_component__.DEFAULT_OPT, defaultOptions);
 
     function toast(msg, options = {}) {
       options.message = msg;

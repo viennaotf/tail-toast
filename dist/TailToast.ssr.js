@@ -451,11 +451,9 @@ var __vue_component__ = /*#__PURE__*/normalizeComponent({
 var containerClasses = ['z-40', 'fixed', 'inset-0', 'flex', 'flex-col-reverse', 'items-end', 'justify-center', 'px-4', 'py-6', 'pointer-events-none', 'sm:p-6', 'sm:items-end', 'sm:justify-end'];
 var index = {
   install: function install(Vue) {
-    var defaultOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     if (installed) return;
     var CONSTRUCTOR = Vue.extend(__vue_component__);
     var CACHE = {};
-    Object.assign(__vue_component__.DEFAULT_OPT, defaultOptions);
 
     function toast(msg) {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
