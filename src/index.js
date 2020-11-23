@@ -1,9 +1,9 @@
 import TailToast from './TailToast.vue'
 import { spawn, removeElement } from './utils.js'
 
-import options from './options'
+// import options from './options'
 
-let installed = false
+let installed = false, options = {}
 
 const containerClasses = [
   'z-40', 'fixed', 'inset-0', 'flex', 'flex-col-reverse', 'items-end', 'justify-center',

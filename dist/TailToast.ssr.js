@@ -447,28 +447,56 @@ var __vue_is_functional_template__ = false;
 var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);var installed = false;
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);var installed = false,
+    options = {};
 var containerClasses = ['z-40', 'fixed', 'inset-0', 'flex', 'flex-col-reverse', 'items-end', 'justify-center', 'px-4', 'py-6', 'pointer-events-none', 'sm:p-6', 'sm:items-end', 'sm:justify-end'];
 var index = {
   install: function install(Vue) {
     if (installed) return;
-    var CONSTRUCTOR = Vue.extend(__vue_component__);
-    var CACHE = {};
+    var toasts = document.createElement('div');
+    containerClasses.forEach(function (c) {
+      return toasts.classList.add(c);
+    });
 
-    function toast(msg) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      options.message = msg;
-      var toast = CACHE[options.id] || (CACHE[options.id] = new CONSTRUCTOR());
-
-      if (!toast.$el) {
-        var vm = toast.$mount();
-        document.querySelector(options.parent || 'body').appendChild(vm.$el);
-      }
-
-      toast.queue.push(options);
+    if (options.defaults && options.defaults.containerClasses) {
+      toasts.classList.add(options.defaults.containerClasses);
     }
 
-    Vue.toast = Vue.prototype.$toast = toast;
+    toasts.setAttribute('id', 'toasts');
+    document.body.appendChild(toasts);
+    var ToastProgrammatic = {
+      show: function show(props) {
+        if (typeof props === 'string') props = {
+          message: props
+        };
+        return spawn('toasts', props, __vue_component__, Vue, options);
+      },
+      success: function success(props) {
+        return spawn('toasts', {
+          type: 'success',
+          message: props
+        }, __vue_component__, Vue, options);
+      },
+      info: function info(props) {
+        return spawn('toasts', {
+          type: 'info',
+          message: props
+        }, __vue_component__, Vue, options);
+      },
+      danger: function danger(props) {
+        return spawn('toasts', {
+          type: 'danger',
+          message: props
+        }, __vue_component__, Vue, options);
+      },
+      warning: function warning(props) {
+        return spawn('toasts', {
+          type: 'warning',
+          message: props
+        }, __vue_component__, Vue, options);
+      }
+    };
+    Vue.toast = Vue.prototype.$toast = ToastProgrammatic;
     installed = true;
   }
 };exports.TailToast=__vue_component__;exports.containerClasses=containerClasses;exports.default=index;exports.removeElement=removeElement;exports.spawn=spawn;
